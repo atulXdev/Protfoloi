@@ -172,9 +172,62 @@ const Projects = () => {
                 </motion.div>
 
                 {/* Projects Grid */}
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 pb-12">
                     {projects.map((project, index) => (
                         <ProjectCard key={project.id} project={project} index={index} />
+                    ))}
+                </div>
+
+                {/* Video Demonstrations */}
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className="text-center mb-12 mt-16"
+                >
+                    <motion.div
+                        initial={{ scale: 0 }}
+                        whileInView={{ scale: 1 }}
+                        viewport={{ once: true }}
+                        className="inline-block mb-4"
+                    >
+                        <span className="text-5xl">🎬</span>
+                    </motion.div>
+                    <h2 className="text-4xl md:text-5xl font-bold mb-4">
+                        Video <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-accent-purple">Demonstrations</span>
+                    </h2>
+                    <div className="w-20 h-1 bg-gradient-to-r from-primary-500 to-accent-purple mx-auto rounded-full mb-4" />
+                </motion.div>
+
+                <div className="grid md:grid-cols-3 gap-8">
+                    {[
+                        { title: 'StockPilot Demonstration', url: 'https://www.youtube.com/embed/8msbBovZEJI?si=YdGF7sSBrFrhD5GI' },
+                        { title: 'InsideFpv Clone', url: 'https://www.youtube.com/embed/nMLfDMz-Ztg?si=wnLQWegJdrfCHqhJ' },
+                        { title: 'Zee5 Clone', url: 'https://www.youtube.com/embed/mN31UwreqGY?si=4smF_JxFEPSBHVUI' }
+                    ].map((video, index) => (
+                        <motion.div
+                            key={index}
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-100px" }}
+                            transition={{ delay: index * 0.1, duration: 0.6 }}
+                            className="glass-dark rounded-2xl overflow-hidden border border-white/5 hover:border-primary-500/30 transition-all duration-300 flex flex-col h-full"
+                        >
+                            <div className="p-4 border-b border-white/5 bg-white/5 backdrop-blur-md">
+                                <h4 className="font-bold text-gray-200 line-clamp-1 truncate">{video.title}</h4>
+                            </div>
+                            <div className="aspect-video w-full bg-black/80 flex-grow relative">
+                                <iframe
+                                    src={video.url}
+                                    title={video.title}
+                                    frameBorder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowFullScreen
+                                    className="absolute inset-0 w-full h-full"
+                                ></iframe>
+                            </div>
+                        </motion.div>
                     ))}
                 </div>
             </div>

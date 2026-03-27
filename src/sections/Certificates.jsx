@@ -5,6 +5,8 @@ import { Award, X, ExternalLink, Calendar, Building2 } from 'lucide-react';
 import hackathon1stPlace from '../assets/certificates/Hackathon  1st place certuficate crp.jpeg';
 import devHeatCert from '../assets/certificates/DevHeat Hackathon.png';
 import doppleGangerCert from '../assets/certificates/DoppleGanger Hackathon.png';
+import webDevCert from '../assets/certificates/Atul Singh Web dev.png';
+import reactCert from '../assets/certificates/React js certifacte Atul Singh.png';
 
 const Certificates = () => {
     const [selectedCert, setSelectedCert] = useState(null);
@@ -35,6 +37,22 @@ const Certificates = () => {
             image: doppleGangerCert,
             icon: '👥',
         },
+        {
+            id: 4,
+            title: 'Web Development Certification',
+            issuer: 'Web Dev Mastery',
+            date: '2026',
+            image: webDevCert,
+            icon: '💻',
+        },
+        {
+            id: 5,
+            title: 'React JS Certification',
+            issuer: 'React Mastery',
+            date: '2026',
+            image: reactCert,
+            icon: '⚛️',
+        }
     ];
 
     const CertificateCard = ({ cert, index }) => {

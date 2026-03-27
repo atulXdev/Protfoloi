@@ -60,17 +60,6 @@ const Skills = () => {
                         {skill.name}
                     </p>
 
-                    {/* Progress Bar */}
-                    <div className="w-full bg-gray-800/50 rounded-full h-2 overflow-hidden">
-                        <motion.div
-                            initial={{ width: 0 }}
-                            whileInView={{ width: `${skill.level}%` }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 1, delay: categoryIndex * 0.1 + index * 0.05 + 0.3 }}
-                            className="h-full bg-gradient-to-r from-primary-500 to-accent-purple rounded-full"
-                        />
-                    </div>
-                    <p className="text-xs text-gray-400 text-center mt-2">{skill.level}% proficiency</p>
 
                     {/* Subtle glow on hover */}
                     <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-300 bg-gradient-to-r from-primary-500/20 to-accent-purple/20 -z-10" />
