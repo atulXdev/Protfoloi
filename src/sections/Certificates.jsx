@@ -1,61 +1,138 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Award, X, ExternalLink, Calendar, Building2 } from 'lucide-react';
+import { Award, X, ExternalLink, Calendar, Building2, Trophy, Flame, Users, Monitor, Atom, Swords, Zap, Medal } from 'lucide-react';
 
-import hackathon1stPlace from '../assets/certificates/Hackathon  1st place certuficate crp.jpeg';
-import devHeatCert from '../assets/certificates/DevHeat Hackathon.png';
-import doppleGangerCert from '../assets/certificates/DoppleGanger Hackathon.png';
 import webDevCert from '../assets/certificates/Atul Singh Web dev.png';
 import reactCert from '../assets/certificates/React js certifacte Atul Singh.png';
 
 const Certificates = () => {
     const [selectedCert, setSelectedCert] = useState(null);
 
-    // Single certificate - Hackathon Winner
-    const certificates = [
+    const hackathons = [
         {
-            id: 1,
-            title: '1st Place Hackathon Winner',
-            issuer: 'Hackathon Competition',
+            id: 'h1',
+            title: 'Electrosphere Hackathon — 1st Place',
+            issuer: 'Electrosphere',
             date: '2026',
-            image: hackathon1stPlace,
-            icon: '🏆',
+            image: 'https://res.cloudinary.com/dv5jwhu5t/image/upload/v1775497140/Hackathon_1st_place_certuficate_crp_e10h1k.jpg',
+            IconComponent: Trophy,
+            gradient: 'from-amber-500 to-yellow-600',
+            badge: '🥇 Winner',
         },
         {
-            id: 2,
-            title: 'DevHeat Hackathon Participant',
+            id: 'h2',
+            title: 'DoppelGanger Hackathon',
+            issuer: 'DoppelGanger',
+            date: '2026',
+            image: 'https://res.cloudinary.com/dv5jwhu5t/image/upload/v1775496995/DoppleGanger_Hackathon_xd7nyw.png',
+            IconComponent: Users,
+            gradient: 'from-violet-500 to-purple-600',
+            badge: 'Participant',
+        },
+        {
+            id: 'h3',
+            title: 'DevHeat Hackathon',
             issuer: 'DevHeat',
             date: '2026',
-            image: devHeatCert,
-            icon: '🔥',
+            image: 'https://res.cloudinary.com/dv5jwhu5t/image/upload/v1775496993/DevHeat_Hackathon_czgjzl.png',
+            IconComponent: Flame,
+            gradient: 'from-orange-500 to-red-600',
+            badge: 'Participant',
         },
+    ];
+
+    const certificates = [
         {
-            id: 3,
-            title: 'DoppleGanger Hackathon Participant',
-            issuer: 'DoppleGanger',
-            date: '2026',
-            image: doppleGangerCert,
-            icon: '👥',
-        },
-        {
-            id: 4,
+            id: 'c1',
             title: 'Web Development Certification',
             issuer: 'Web Dev Mastery',
             date: '2026',
             image: webDevCert,
-            icon: '💻',
+            IconComponent: Monitor,
         },
         {
-            id: 5,
+            id: 'c2',
             title: 'React JS Certification',
             issuer: 'React Mastery',
             date: '2026',
             image: reactCert,
-            icon: '⚛️',
-        }
+            IconComponent: Atom,
+        },
     ];
 
+    /* ── Hackathon Card ── */
+    const HackathonCard = ({ hack, index }) => {
+        const Icon = hack.IconComponent;
+        return (
+            <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ delay: index * 0.12, duration: 0.5 }}
+                whileHover={{ y: -8 }}
+                onClick={() => setSelectedCert(hack)}
+                className="group cursor-pointer relative h-full"
+            >
+                <div className="glass-dark rounded-2xl overflow-hidden border border-white/5 hover:border-primary-500/30 transition-all duration-300 h-full flex flex-col">
+                    {/* Image */}
+                    <div className="aspect-[4/3] bg-gradient-to-br from-primary-900/20 via-dark-800 to-accent-purple/20 relative overflow-hidden">
+                        <img
+                            src={hack.image}
+                            alt={hack.title}
+                            className="w-full h-full object-contain bg-dark-900 transition-transform duration-500 group-hover:scale-105"
+                        />
+
+                        {/* Badge */}
+                        {hack.badge && (
+                            <div className={`absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold text-white bg-gradient-to-r ${hack.gradient} shadow-lg`}>
+                                {hack.badge}
+                            </div>
+                        )}
+
+                        {/* Overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-dark-900 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6">
+                            <div className="flex items-center gap-2 text-primary-400">
+                                <ExternalLink size={18} />
+                                <span className="font-medium text-sm">View Certificate</span>
+                            </div>
+                        </div>
+
+                        {/* Decorative Corner */}
+                        <div className="absolute top-4 right-4 w-12 h-12 border-t-2 border-r-2 border-primary-500/30 rounded-tr-lg" />
+                    </div>
+
+                    {/* Info */}
+                    <div className="p-6 flex-1 flex flex-col">
+                        <div className="flex items-center gap-3 mb-3">
+                            <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${hack.gradient} flex items-center justify-center flex-shrink-0`}>
+                                <Icon className="text-white" size={20} />
+                            </div>
+                            <h3 className="text-lg font-bold group-hover:text-primary-400 transition-colors line-clamp-2">
+                                {hack.title}
+                            </h3>
+                        </div>
+                        <div className="space-y-2 mt-auto">
+                            <div className="flex items-center gap-2 text-gray-400 text-sm">
+                                <Building2 size={14} />
+                                <span>{hack.issuer}</span>
+                            </div>
+                            <div className="flex items-center gap-2 text-gray-500 text-xs">
+                                <Calendar size={14} />
+                                <span>{hack.date}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Glow effect */}
+                <div className={`absolute inset-0 bg-gradient-to-r ${hack.gradient} rounded-2xl opacity-0 group-hover:opacity-10 blur-2xl transition-opacity duration-300 -z-10`} />
+            </motion.div>
+        );
+    };
+
+    /* ── Certificate Card ── */
     const CertificateCard = ({ cert, index }) => {
+        const Icon = cert.IconComponent;
         return (
             <motion.div
                 initial={{ opacity: 0, y: 50 }}
@@ -69,7 +146,6 @@ const Certificates = () => {
                 <div className="glass-dark rounded-2xl overflow-hidden border border-white/5 hover:border-primary-500/30 transition-all duration-300 h-full flex flex-col">
                     {/* Certificate Preview */}
                     <div className="aspect-[4/3] bg-gradient-to-br from-primary-900/20 via-dark-800 to-accent-purple/20 relative overflow-hidden">
-                        {/* Certificate Image */}
                         <div className="absolute inset-0">
                             {cert.image ? (
                                 <img
@@ -81,9 +157,9 @@ const Certificates = () => {
                                 <div className="flex items-center justify-center h-full bg-dark-900">
                                     <motion.div
                                         whileHover={{ scale: 1.2, rotate: 5 }}
-                                        className="text-7xl opacity-80"
+                                        className="opacity-80"
                                     >
-                                        {cert.icon}
+                                        <Icon className="text-primary-400" size={64} />
                                     </motion.div>
                                 </div>
                             )}
@@ -128,6 +204,8 @@ const Certificates = () => {
     return (
         <section id="certificates" className="relative py-20 px-6">
             <div className="max-w-7xl mx-auto">
+
+                {/* ───────── Hackathons Sub-Section ───────── */}
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -139,12 +217,43 @@ const Certificates = () => {
                         initial={{ scale: 0 }}
                         whileInView={{ scale: 1 }}
                         viewport={{ once: true }}
-                        className="inline-block mb-4"
+                        className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-500/20 to-orange-600/20 border border-amber-500/30 mb-4"
                     >
-                        <span className="text-6xl">🏆</span>
+                        <Swords className="text-amber-400" size={32} />
                     </motion.div>
                     <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                        Certificates & <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-accent-purple">Achievements</span>
+                        Hackathon <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-500">Achievements</span>
+                    </h2>
+                    <div className="w-20 h-1 bg-gradient-to-r from-amber-500 to-orange-500 mx-auto rounded-full mb-4" />
+                    <p className="text-gray-400 max-w-2xl mx-auto">
+                        Competing, collaborating, and building under pressure
+                    </p>
+                </motion.div>
+
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+                    {hackathons.map((hack, index) => (
+                        <HackathonCard key={hack.id} hack={hack} index={index} />
+                    ))}
+                </div>
+
+                {/* ───────── Certifications Sub-Section ───────── */}
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className="text-center mb-16"
+                >
+                    <motion.div
+                        initial={{ scale: 0 }}
+                        whileInView={{ scale: 1 }}
+                        viewport={{ once: true }}
+                        className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-primary-500/20 to-accent-purple/20 border border-primary-500/30 mb-4"
+                    >
+                        <Medal className="text-primary-400" size={32} />
+                    </motion.div>
+                    <h2 className="text-4xl md:text-5xl font-bold mb-4">
+                        Certificates & <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-accent-purple">Credentials</span>
                     </h2>
                     <div className="w-20 h-1 bg-gradient-to-r from-primary-500 to-accent-purple mx-auto rounded-full mb-4" />
                     <p className="text-gray-400 max-w-2xl mx-auto">
@@ -159,7 +268,7 @@ const Certificates = () => {
                     ))}
                 </div>
 
-                {/* Note for adding certificates */}
+                {/* Note */}
                 <motion.div
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
@@ -172,7 +281,7 @@ const Certificates = () => {
                     </div>
                 </motion.div>
 
-                {/* Modal */}
+                {/* ───────── Modal ───────── */}
                 <AnimatePresence>
                     {selectedCert && (
                         <motion.div
@@ -197,7 +306,15 @@ const Certificates = () => {
                                 </button>
 
                                 <div className="mb-6">
-                                    <div className="text-6xl mb-4">{selectedCert.icon}</div>
+                                    <div className="mb-4">
+                                        {selectedCert.IconComponent ? (
+                                            <div className={`inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br ${selectedCert.gradient || 'from-primary-500/20 to-accent-purple/20'}`}>
+                                                <selectedCert.IconComponent className="text-white" size={28} />
+                                            </div>
+                                        ) : (
+                                            <Award className="text-primary-400" size={48} />
+                                        )}
+                                    </div>
                                     <h3 className="text-3xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-accent-purple">
                                         {selectedCert.title}
                                     </h3>

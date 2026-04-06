@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ExternalLink, Github, Sparkles } from 'lucide-react';
+import { ExternalLink, Github, Sparkles, Briefcase, Film, Youtube } from 'lucide-react';
 
 import streamNovaImg from '../assets/projects/StreamNova.png';
 import leadTwinImg from '../assets/projects/LeadTwin.png';
@@ -15,6 +15,7 @@ const Projects = () => {
             technologies: ['React', 'JavaScript', 'CSS', 'Vercel'],
             deployedLink: 'https://stream-nova-golobal-tv.vercel.app/',
             githubLink: '#',
+            youtubeLink: 'https://www.youtube.com/embed/8msbBovZEJI?si=YdGF7sSBrFrhD5GI',
             gradient: 'from-[#0ea5e9] to-[#3b82f6]',
             image: streamNovaImg,
         },
@@ -25,6 +26,7 @@ const Projects = () => {
             technologies: ['React', 'AI/ML', 'Tailwind', 'Next.js'],
             deployedLink: 'https://lead-twin-ai.vercel.app/',
             githubLink: '#',
+            youtubeLink: '',
             gradient: 'from-[#8b5cf6] to-[#ec4899]',
             image: leadTwinImg,
         },
@@ -35,6 +37,7 @@ const Projects = () => {
             technologies: ['React', 'Authentication', 'Analytics', 'UI/UX'],
             deployedLink: 'https://lead-beast.vercel.app/auth/login',
             githubLink: '#',
+            youtubeLink: '',
             gradient: 'from-[#10b981] to-[#0ea5e9]',
             image: leadBeastImg,
         },
@@ -85,6 +88,19 @@ const Projects = () => {
                             >
                                 <Github size={20} />
                             </motion.a>
+                            {project.youtubeLink && (
+                                <motion.a
+                                    href={project.youtubeLink.replace('/embed/', '/watch?v=').split('?si=')[0]}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    whileHover={{ scale: 1.1 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white hover:bg-red-600/80 transition-all"
+                                    onClick={(e) => e.stopPropagation()}
+                                >
+                                    <Youtube size={20} />
+                                </motion.a>
+                            )}
                         </div>
 
                         {/* Sparkle Effect */}
@@ -134,6 +150,16 @@ const Projects = () => {
                                 <Github size={16} />
                                 Code
                             </a>
+                            {project.youtubeLink && (
+                                <a
+                                    href={project.youtubeLink.replace('/embed/', '/watch?v=').split('?si=')[0]}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="py-2 px-4 rounded-lg glass border border-red-500/20 text-red-400 text-sm font-semibold hover:border-red-400 hover:bg-red-500/10 transition-all flex items-center justify-center gap-2"
+                                >
+                                    <Youtube size={16} />
+                                </a>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -158,9 +184,9 @@ const Projects = () => {
                         initial={{ scale: 0 }}
                         whileInView={{ scale: 1 }}
                         viewport={{ once: true }}
-                        className="inline-block mb-4"
+                        className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-primary-500/20 to-accent-purple/20 border border-primary-500/30 mb-4"
                     >
-                        <span className="text-6xl">💼</span>
+                        <Briefcase className="text-primary-400" size={32} />
                     </motion.div>
                     <h2 className="text-4xl md:text-5xl font-bold mb-4">
                         Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-accent-purple">Projects</span>
@@ -190,9 +216,9 @@ const Projects = () => {
                         initial={{ scale: 0 }}
                         whileInView={{ scale: 1 }}
                         viewport={{ once: true }}
-                        className="inline-block mb-4"
+                        className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-red-500/20 to-orange-500/20 border border-red-500/30 mb-4"
                     >
-                        <span className="text-5xl">🎬</span>
+                        <Film className="text-red-400" size={32} />
                     </motion.div>
                     <h2 className="text-4xl md:text-5xl font-bold mb-4">
                         Video <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-accent-purple">Demonstrations</span>
@@ -214,7 +240,8 @@ const Projects = () => {
                             transition={{ delay: index * 0.1, duration: 0.6 }}
                             className="glass-dark rounded-2xl overflow-hidden border border-white/5 hover:border-primary-500/30 transition-all duration-300 flex flex-col h-full"
                         >
-                            <div className="p-4 border-b border-white/5 bg-white/5 backdrop-blur-md">
+                            <div className="p-4 border-b border-white/5 bg-white/5 backdrop-blur-md flex items-center gap-3">
+                                <Youtube size={18} className="text-red-400 flex-shrink-0" />
                                 <h4 className="font-bold text-gray-200 line-clamp-1 truncate">{video.title}</h4>
                             </div>
                             <div className="aspect-video w-full bg-black/80 flex-grow relative">

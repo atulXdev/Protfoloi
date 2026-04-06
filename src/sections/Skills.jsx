@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { Zap, Crosshair, BarChart3 } from 'lucide-react';
 import TechLogos from '../components/TechLogos';
 
 const Skills = () => {
@@ -88,7 +89,9 @@ const Skills = () => {
                         viewport={{ once: true }}
                         className="inline-block mb-4"
                     >
-                        <span className="text-6xl">⚡</span>
+                        <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-yellow-500/20 to-amber-500/20 border border-yellow-500/30">
+                            <Zap className="text-yellow-400" size={32} />
+                        </div>
                     </motion.div>
                     <h2 className="text-4xl md:text-5xl font-bold mb-4">
                         Tech <span className="gradient-text">Stack</span>
@@ -155,10 +158,10 @@ const Skills = () => {
                                 transition={{ duration: 1, delay: 0.5 }}
                                 className="overflow-hidden"
                             >
-                                <p className="text-accent-cyan">
-                                    🎯 Practicing <span className="text-accent-orange font-bold">Data Structures & Algorithms</span> in <span className="text-primary-400">Java</span>
+                                <p className="text-accent-cyan flex items-center gap-2">
+                                    <Crosshair size={16} className="text-accent-cyan flex-shrink-0" /> Practicing <span className="text-accent-orange font-bold">Data Structures & Algorithms</span> in <span className="text-primary-400">Java</span>
                                 </p>
-                                <p className="text-gray-500 mt-2">📊 LeetCode: Solving problems daily</p>
+                                <p className="text-gray-500 mt-2 flex items-center gap-2"><BarChart3 size={14} className="flex-shrink-0" /> LeetCode: Solving problems daily</p>
                             </motion.div>
                             <div className="flex items-center gap-2 mt-4">
                                 <span className="text-primary-400">$</span>
