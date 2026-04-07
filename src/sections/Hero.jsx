@@ -88,7 +88,7 @@ const Hero = () => {
                         </a>
 
                         <a
-                            href="https://drive.google.com/file/d/19uCsLTo_0CwlgxJsB9ttbFLJAg1Q5wo-/view?usp=sharing"
+                            href="https://drive.google.com/drive/home?dmr=1&ec=wgc-drive-%5Bmodule%5D-goto"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="px-10 py-4 bg-gradient-to-r from-primary-500/20 to-accent-purple/20 backdrop-blur-md rounded-2xl text-white font-bold hover:bg-white/10 transition-all duration-300 border border-primary-500/30 shadow-lg whitespace-nowrap"
