@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Award, X, ExternalLink, Calendar, Building2, Trophy, Flame, Users, Monitor, Atom, Swords, Zap, Medal } from 'lucide-react';
+import { Award, X, ExternalLink, Calendar, Building2, Trophy, Flame, Users, Monitor, Atom, Swords, Zap, Medal, Globe } from 'lucide-react';
 
 import webDevCert from '../assets/certificates/Atul Singh Web dev.png';
 import reactCert from '../assets/certificates/React js certifacte Atul Singh.png';
@@ -15,28 +15,31 @@ const Certificates = () => {
             issuer: 'Electrosphere',
             date: '2026',
             image: 'https://res.cloudinary.com/dv5jwhu5t/image/upload/v1775497140/Hackathon_1st_place_certuficate_crp_e10h1k.jpg',
+            cloudinaryLink: 'https://res.cloudinary.com/dv5jwhu5t/image/upload/v1775497140/Hackathon_1st_place_certuficate_crp_e10h1k.jpg',
             IconComponent: Trophy,
             gradient: 'from-amber-500 to-yellow-600',
             badge: '🥇 Winner',
         },
         {
             id: 'h2',
-            title: 'DoppelGanger Hackathon',
-            issuer: 'DoppelGanger',
-            date: '2026',
-            image: 'https://res.cloudinary.com/dv5jwhu5t/image/upload/v1775496995/DoppleGanger_Hackathon_xd7nyw.png',
-            IconComponent: Users,
-            gradient: 'from-violet-500 to-purple-600',
-            badge: 'Participant',
-        },
-        {
-            id: 'h3',
             title: 'DevHeat Hackathon',
             issuer: 'DevHeat',
             date: '2026',
             image: 'https://res.cloudinary.com/dv5jwhu5t/image/upload/v1775496993/DevHeat_Hackathon_czgjzl.png',
+            cloudinaryLink: 'https://res.cloudinary.com/dv5jwhu5t/image/upload/v1775496993/DevHeat_Hackathon_czgjzl.png',
             IconComponent: Flame,
             gradient: 'from-orange-500 to-red-600',
+            badge: 'Participant',
+        },
+        {
+            id: 'h3',
+            title: 'DoppelGanger Hackathon',
+            issuer: 'DoppelGanger',
+            date: '2026',
+            image: 'https://res.cloudinary.com/dv5jwhu5t/image/upload/v1775496995/DoppleGanger_Hackathon_xd7nyw.png',
+            cloudinaryLink: 'https://res.cloudinary.com/dv5jwhu5t/image/upload/v1775496995/DoppleGanger_Hackathon_xd7nyw.png',
+            IconComponent: Users,
+            gradient: 'from-violet-500 to-purple-600',
             badge: 'Participant',
         },
     ];
@@ -44,19 +47,30 @@ const Certificates = () => {
     const certificates = [
         {
             id: 'c1',
-            title: 'Web Development Certification',
-            issuer: 'Web Dev Mastery',
-            date: '2026',
-            image: webDevCert,
-            IconComponent: Monitor,
-        },
-        {
-            id: 'c2',
             title: 'React JS Certification',
             issuer: 'React Mastery',
             date: '2026',
             image: reactCert,
+            cloudinaryLink: 'https://res.cloudinary.com/dv5jwhu5t/image/upload/v1775496996/React_js_certifacte_Atul_Singh_totl7v.png',
             IconComponent: Atom,
+        },
+        {
+            id: 'c2',
+            title: 'Web Development Certification',
+            issuer: 'Web Dev Mastery',
+            date: '2026',
+            image: webDevCert,
+            cloudinaryLink: 'https://res.cloudinary.com/dv5jwhu5t/image/upload/v1775496994/Atul_Singh_Web_dev_v8eplb.png',
+            IconComponent: Monitor,
+        },
+        {
+            id: 'c3',
+            title: 'Gemini for Workspace Certification',
+            issuer: 'Google',
+            date: '2026',
+            image: 'https://res.cloudinary.com/dv5jwhu5t/image/upload/v1775537876/Atul_Singh_Gemini_for_workspace_certificate_cpd4km.png',
+            cloudinaryLink: 'https://res.cloudinary.com/dv5jwhu5t/image/upload/v1775537876/Atul_Singh_Gemini_for_workspace_certificate_cpd4km.png',
+            IconComponent: Globe,
         },
     ];
 
@@ -347,6 +361,21 @@ const Certificates = () => {
                                         </div>
                                     )}
                                 </div>
+
+                                {/* View Full Certificate Button */}
+                                {selectedCert.cloudinaryLink && (
+                                    <div className="mt-6 flex justify-center">
+                                        <a
+                                            href={selectedCert.cloudinaryLink}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-primary-500 to-accent-purple text-white font-semibold hover:shadow-lg hover:shadow-primary-500/40 transition-all duration-300 hover:scale-105"
+                                        >
+                                            <ExternalLink size={18} />
+                                            View Full Certificate
+                                        </a>
+                                    </div>
+                                )}
                             </motion.div>
                         </motion.div>
                     )}

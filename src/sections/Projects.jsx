@@ -1,12 +1,14 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { ExternalLink, Github, Sparkles, Briefcase, Film, Youtube } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ExternalLink, Github, Sparkles, Briefcase, Film, Youtube, ChevronDown, ChevronUp } from 'lucide-react';
 
 import streamNovaImg from '../assets/projects/StreamNova.png';
 import leadTwinImg from '../assets/projects/LeadTwin.png';
 import leadBeastImg from '../assets/projects/LeadBeast.png';
 
 const Projects = () => {
+    const [showAllVideos, setShowAllVideos] = useState(false);
+
     const projects = [
         {
             id: 1,
@@ -42,6 +44,17 @@ const Projects = () => {
             image: leadBeastImg,
         },
     ];
+
+    const allVideos = [
+        { title: 'StockPilot Demonstration', url: 'https://www.youtube.com/embed/8msbBovZEJI?si=YdGF7sSBrFrhD5GI' },
+        { title: 'InsideFpv Clone', url: 'https://www.youtube.com/embed/nMLfDMz-Ztg?si=wnLQWegJdrfCHqhJ' },
+        { title: 'Zee5 Clone', url: 'https://www.youtube.com/embed/mN31UwreqGY?si=4smF_JxFEPSBHVUI' },
+        { title: 'Ayusynk Clone', url: 'https://www.youtube.com/embed/M10K47zNBnc' },
+        { title: 'Oracle Clone', url: 'https://www.youtube.com/embed/haxFh9ootcs' },
+        { title: 'SunNxt Clone', url: 'https://www.youtube.com/embed/bnaQznwn0ws' },
+    ];
+
+    const visibleVideos = showAllVideos ? allVideos : allVideos.slice(0, 3);
 
     const ProjectCard = ({ project, index }) => {
         return (
@@ -227,36 +240,64 @@ const Projects = () => {
                 </motion.div>
 
                 <div className="grid md:grid-cols-3 gap-8">
-                    {[
-                        { title: 'StockPilot Demonstration', url: 'https://www.youtube.com/embed/8msbBovZEJI?si=YdGF7sSBrFrhD5GI' },
-                        { title: 'InsideFpv Clone', url: 'https://www.youtube.com/embed/nMLfDMz-Ztg?si=wnLQWegJdrfCHqhJ' },
-                        { title: 'Zee5 Clone', url: 'https://www.youtube.com/embed/mN31UwreqGY?si=4smF_JxFEPSBHVUI' }
-                    ].map((video, index) => (
-                        <motion.div
-                            key={index}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-100px" }}
-                            transition={{ delay: index * 0.1, duration: 0.6 }}
-                            className="glass-dark rounded-2xl overflow-hidden border border-white/5 hover:border-primary-500/30 transition-all duration-300 flex flex-col h-full"
-                        >
-                            <div className="p-4 border-b border-white/5 bg-white/5 backdrop-blur-md flex items-center gap-3">
-                                <Youtube size={18} className="text-red-400 flex-shrink-0" />
-                                <h4 className="font-bold text-gray-200 line-clamp-1 truncate">{video.title}</h4>
-                            </div>
-                            <div className="aspect-video w-full bg-black/80 flex-grow relative">
-                                <iframe
-                                    src={video.url}
-                                    title={video.title}
-                                    frameBorder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowFullScreen
-                                    className="absolute inset-0 w-full h-full"
-                                ></iframe>
-                            </div>
-                        </motion.div>
-                    ))}
+                    <AnimatePresence mode="popLayout">
+                        {visibleVideos.map((video, index) => (
+                            <motion.div
+                                key={video.title}
+                                initial={{ opacity: 0, y: 30 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -20 }}
+                                transition={{ delay: index < 3 ? index * 0.1 : (index - 3) * 0.1, duration: 0.6 }}
+                                layout
+                                className="glass-dark rounded-2xl overflow-hidden border border-white/5 hover:border-primary-500/30 transition-all duration-300 flex flex-col h-full"
+                            >
+                                <div className="p-4 border-b border-white/5 bg-white/5 backdrop-blur-md flex items-center gap-3">
+                                    <Youtube size={18} className="text-red-400 flex-shrink-0" />
+                                    <h4 className="font-bold text-gray-200 line-clamp-1 truncate">{video.title}</h4>
+                                </div>
+                                <div className="aspect-video w-full bg-black/80 flex-grow relative">
+                                    <iframe
+                                        src={video.url}
+                                        title={video.title}
+                                        frameBorder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowFullScreen
+                                        className="absolute inset-0 w-full h-full"
+                                    ></iframe>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </AnimatePresence>
                 </div>
+
+                {/* Show More / Show Less Button */}
+                {allVideos.length > 3 && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        className="flex justify-center mt-10"
+                    >
+                        <motion.button
+                            whileHover={{ scale: 1.05, y: -2 }}
+                            whileTap={{ scale: 0.95 }}
+                            onClick={() => setShowAllVideos(!showAllVideos)}
+                            className="group inline-flex items-center gap-2 px-8 py-3 rounded-xl bg-gradient-to-r from-red-500/10 to-orange-500/10 border border-red-500/20 text-red-400 font-semibold hover:border-red-400/50 hover:shadow-lg hover:shadow-red-500/20 transition-all duration-300"
+                        >
+                            {showAllVideos ? (
+                                <>
+                                    <ChevronUp size={20} className="transition-transform group-hover:-translate-y-0.5" />
+                                    Show Less
+                                </>
+                            ) : (
+                                <>
+                                    <ChevronDown size={20} className="transition-transform group-hover:translate-y-0.5" />
+                                    Show More ({allVideos.length - 3} more)
+                                </>
+                            )}
+                        </motion.button>
+                    </motion.div>
+                )}
             </div>
         </section>
     );
