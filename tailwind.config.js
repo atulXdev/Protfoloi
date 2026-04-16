@@ -8,21 +8,20 @@ export default {
         extend: {
             colors: {
                 primary: {
-                    400: '#DFD0B8', // Beige/Sand - Highlights
-                    500: '#948979', // Taupe - Accents
-                    600: '#7A6E5D', // Darker Taupe
+                    400: '#7C5CFC', // Electric Purple
+                    500: '#6442E8', // slightly darker
+                    600: '#4D29D6', 
                 },
                 accent: {
-                    cyan: '#948979',
-                    purple: '#DFD0B8',
-                    pink: '#393E46',
-                    orange: '#7A6E5D',
+                    cyan: '#00D4FF',
+                    purple: '#7C5CFC',
+                    pink: '#EC4899',
                 },
                 dark: {
-                    900: '#222831', // Deep Charcoal background
-                    800: '#2A303A', // Slightly lighter 
-                    700: '#393E46', // Slate Gray
-                    600: '#4A505A',
+                    900: '#0B0F19', // Pure base
+                    800: '#111827', // Card dark
+                    700: '#1F2937', // Elevated card
+                    600: '#374151',
                 }
             },
             fontFamily: {
@@ -34,18 +33,19 @@ export default {
                 'glow': 'glow 2s ease-in-out infinite alternate',
                 'slide-up': 'slideUp 0.5s ease-out',
                 'fade-in': 'fadeIn 0.6s ease-out',
+                'spin-slow': 'spin 8s linear infinite',
             },
             keyframes: {
                 float: {
                     '0%, 100%': { transform: 'translateY(0px)' },
-                    '50%': { transform: 'translateY(-20px)' },
+                    '50%': { transform: 'translateY(-15px)' },
                 },
                 glow: {
-                    '0%': { boxShadow: '0 0 5px rgba(14, 165, 233, 0.5), 0 0 10px rgba(14, 165, 233, 0.3)' },
-                    '100%': { boxShadow: '0 0 20px rgba(14, 165, 233, 0.8), 0 0 30px rgba(14, 165, 233, 0.5)' },
+                    '0%': { boxShadow: '0 0 10px rgba(0, 212, 255, 0.2), 0 0 20px rgba(124, 92, 252, 0.2)' },
+                    '100%': { boxShadow: '0 0 20px rgba(0, 212, 255, 0.4), 0 0 35px rgba(124, 92, 252, 0.4)' },
                 },
                 slideUp: {
-                    '0%': { transform: 'translateY(100px)', opacity: '0' },
+                    '0%': { transform: 'translateY(50px)', opacity: '0' },
                     '100%': { transform: 'translateY(0)', opacity: '1' },
                 },
                 fadeIn: {
@@ -53,6 +53,9 @@ export default {
                     '100%': { opacity: '1' },
                 },
             },
+            backgroundImage: {
+                'gradient-main': 'linear-gradient(135deg, #7C5CFC, #00D4FF)',
+            }
         },
     },
     plugins: [],

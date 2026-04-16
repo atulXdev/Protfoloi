@@ -1,42 +1,56 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Code2, Database, Brain, TrendingUp, Terminal } from 'lucide-react';
-import profileImg from '../assets/profile.jpeg';
+import { Code2, Brain, TrendingUp, Layers, Terminal, GitBranch } from 'lucide-react';
 
 const About = () => {
-    const stats = [
-        { icon: Code2, label: 'Role', value: 'Full Stack Dev', color: 'text-primary-400' },
-        { icon: Terminal, label: 'Status', value: 'College Student', color: 'text-accent-cyan' },
-        { icon: Database, label: 'Certificates', value: '4+', color: 'text-accent-purple' },
-    ];
-
     const highlights = [
         {
             icon: Code2,
-            title: 'MERN Stack Expert',
-            description: 'Building scalable web applications with MongoDB, Express, React, and Node.js',
-            gradient: 'from-green-500 to-emerald-600',
+            title: 'MERN Stack Developer',
+            description: 'Architecting scalable, responsive, and performance-optimized web applications utilizing MongoDB, Express, React, and Node.js.',
+            gradient: 'from-[#7C5CFC] to-[#5B3FD6]',
+            glow: 'rgba(124, 92, 252, 0.3)',
+            border: 'rgba(124, 92, 252, 0.25)',
         },
         {
             icon: Brain,
             title: 'AI/ML Enthusiast',
-            description: 'Exploring machine learning, deep learning, and data science with Python',
-            gradient: 'from-purple-500 to-pink-600',
+            description: 'Designing intelligent systems and leveraging machine learning/deep learning algorithms to solve complex data-driven challenges.',
+            gradient: 'from-[#00D4FF] to-[#0095B6]',
+            glow: 'rgba(0, 212, 255, 0.3)',
+            border: 'rgba(0, 212, 255, 0.25)',
         },
         {
             icon: TrendingUp,
             title: 'Data Analytics',
-            description: 'Transforming data into insights using NumPy, Pandas, and visualization tools',
-            gradient: 'from-blue-500 to-cyan-600',
+            description: 'Extracting actionable insights from raw datasets using advanced statistical methods and modern visualization tools.',
+            gradient: 'from-[#22C55E] to-[#16A34A]',
+            glow: 'rgba(34, 197, 94, 0.3)',
+            border: 'rgba(34, 197, 94, 0.25)',
         },
     ];
 
-    return (
-        <section id="about" className="relative py-20 px-6 overflow-hidden">
-            {/* Background Effects */}
-            <div className="absolute top-0 right-0 w-96 h-96 bg-primary-500/5 rounded-full blur-3xl" />
+    const whatIDo = [
+        { icon: Layers, text: 'Full-Stack Web Apps', color: '#7C5CFC' },
+        { icon: Terminal, text: 'REST API Design', color: '#00D4FF' },
+        { icon: GitBranch, text: 'Open Source', color: '#22C55E' },
+        { icon: Brain, text: 'ML Experiments', color: '#EC4899' },
+    ];
 
-            <div className="max-w-6xl mx-auto relative">
+    return (
+        <section id="about" className="relative py-24 px-6 overflow-hidden" style={{ background: '#0B0F19' }}>
+            {/* Background glows */}
+            <div className="pointer-events-none absolute inset-0 overflow-hidden">
+                <div className="absolute top-0 right-0 w-96 h-96 rounded-full"
+                    style={{ background: 'radial-gradient(circle, rgba(124,92,252,0.08) 0%, transparent 70%)' }} />
+                <div className="absolute bottom-0 left-0 w-96 h-96 rounded-full"
+                    style={{ background: 'radial-gradient(circle, rgba(0,212,255,0.06) 0%, transparent 70%)' }} />
+                <div className="absolute inset-0 grid-pattern opacity-20" />
+            </div>
+
+            <div className="max-w-6xl mx-auto relative z-10">
+
+                {/* Section Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -44,137 +58,110 @@ const About = () => {
                     transition={{ duration: 0.6 }}
                     className="text-center mb-16"
                 >
-                    <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                        About <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-accent-purple">Me</span>
+                    <p className="text-sm font-mono tracking-[3px] uppercase mb-3" style={{ color: '#7C5CFC' }}>Get to know me</p>
+                    <h2 className="text-4xl md:text-5xl font-black mb-5">
+                        <span style={{ color: '#E5E7EB' }}>Professional </span>
+                        <span className="gradient-text">Overview</span>
                     </h2>
-                    <div className="w-20 h-1 bg-gradient-to-r from-primary-500 to-accent-purple mx-auto rounded-full" />
+                    <div className="section-divider" />
                 </motion.div>
 
-                <div className="grid lg:grid-cols-2 gap-12 items-start mb-16">
-                    {/* Left: Introduction */}
-                    <motion.div
-                        initial={{ opacity: 0, x: -30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                        className="space-y-6"
-                    >
-                        <div className="glass-dark p-8 rounded-2xl border border-white/5">
-                            <div className="flex items-start gap-4 mb-6">
-                                <motion.div
-                                    whileHover={{ scale: 1.05, rotate: -5 }}
-                                    className="w-16 h-16 rounded-2xl overflow-hidden border-2 border-primary-500/30 flex-shrink-0 shadow-lg shadow-primary-500/20"
-                                >
-                                    <img src={profileImg} alt="Atul Singh" className="w-full h-full object-cover object-[center_top] scale-110" />
-                                </motion.div>
-                                <div>
-                                    <h3 className="text-2xl font-bold text-white mb-2">Atul Singh</h3>
-                                    <p className="text-gray-400 font-mono text-sm">{'<FullStackDeveloper />'}</p>
-                                </div>
-                            </div>
-
-                            <p className="text-gray-300 text-lg leading-relaxed mb-4">
-                                I'm a passionate developer and college student with a love for creating
-                                <span className="text-primary-400 font-semibold"> innovative solutions</span>.
-                                My expertise spans across the <span className="text-accent-cyan font-semibold">MERN Stack</span>,
-                                and I'm constantly exploring <span className="text-accent-purple font-semibold">AI/ML</span> and
-                                <span className="text-accent-pink font-semibold"> Data Analytics</span>.
-                            </p>
-
-                            <p className="text-gray-400 leading-relaxed">
-                                With proficiency in <span className="font-mono text-primary-400">Python, JavaScript, TypeScript, Java,</span> and
-                                <span className="font-mono text-primary-400"> C++</span>, I build projects that solve real-world problems
-                                while continuously sharpening my problem-solving skills through DSA practice.
-                            </p>
-                        </div>
-
-                        {/* Stats Cards */}
-                        <div className="grid grid-cols-3 gap-4">
-                            {stats.map((stat, index) => {
-                                const Icon = stat.icon;
-                                return (
-                                    <motion.div
-                                        key={stat.label}
-                                        initial={{ opacity: 0, y: 20 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
-                                        viewport={{ once: true, margin: "-50px" }}
-                                        transition={{ delay: index * 0.05 }}
-                                        whileHover={{ y: -5 }}
-                                        className="glass-dark p-4 rounded-xl text-center border border-white/5 hover:border-primary-500/30 transition-all"
-                                    >
-                                        <Icon className={`mx-auto mb-2 ${stat.color}`} size={24} />
-                                        <p className="text-xl font-bold text-white mb-1">{stat.value}</p>
-                                        <p className="text-xs text-gray-500">{stat.label}</p>
-                                    </motion.div>
-                                );
-                            })}
-                        </div>
-                    </motion.div>
-
-                    {/* Right: Highlights */}
-                    <motion.div
-                        initial={{ opacity: 0, x: 30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                        className="space-y-4"
-                    >
-                        {highlights.map((item, index) => {
-                            const Icon = item.icon;
-                            return (
-                                <motion.div
-                                    key={item.title}
-                                    initial={{ opacity: 0, x: 20 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: index * 0.15 }}
-                                    whileHover={{ scale: 1.02 }}
-                                    className="group relative"
-                                >
-                                    <div className="glass-dark p-6 rounded-2xl border border-white/5 hover:border-white/10 transition-all">
-                                        <div className="flex items-start gap-4">
-                                            <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${item.gradient} flex items-center justify-center flex-shrink-0`}>
-                                                <Icon className="text-white" size={24} />
-                                            </div>
-                                            <div className="flex-1">
-                                                <h4 className="text-lg font-bold text-white mb-2 group-hover:text-primary-400 transition-colors">
-                                                    {item.title}
-                                                </h4>
-                                                <p className="text-gray-400 text-sm leading-relaxed">
-                                                    {item.description}
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-10 blur-xl transition-opacity duration-300 bg-gradient-to-r ${item.gradient} -z-10`} />
-                                </motion.div>
-                            );
-                        })}
-                    </motion.div>
-                </div>
-
-                {/* Code Snippet Showcase - USP Element */}
+                {/* Intro Card */}
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, scale: 0.96 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
-                    className="glass-dark border border-gray-700 rounded-xl p-6 font-mono text-sm overflow-hidden"
+                    transition={{ duration: 0.6 }}
+                    className="max-w-4xl mx-auto text-center mb-20"
                 >
-                    <div className="flex items-center gap-2 mb-4 border-b border-gray-700 pb-3">
-                        <div className="flex gap-2">
-                            <div className="w-3 h-3 rounded-full bg-red-500" />
-                            <div className="w-3 h-3 rounded-full bg-yellow-500" />
-                            <div className="w-3 h-3 rounded-full bg-green-500" />
+                    <div className="relative p-8 md:p-10 rounded-3xl overflow-hidden"
+                        style={{ background: '#111827', border: '1px solid rgba(124,92,252,0.2)' }}>
+                        {/* Corner orbs */}
+                        <div className="absolute top-0 left-0 w-40 h-40 rounded-full"
+                            style={{ background: 'radial-gradient(circle, rgba(124,92,252,0.15) 0%, transparent 70%)', transform: 'translate(-30%,-30%)' }} />
+                        <div className="absolute bottom-0 right-0 w-40 h-40 rounded-full"
+                            style={{ background: 'radial-gradient(circle, rgba(0,212,255,0.12) 0%, transparent 70%)', transform: 'translate(30%,30%)' }} />
+
+                        <h3 className="text-2xl md:text-3xl font-bold mb-2 relative z-10" style={{ color: '#E5E7EB' }}>
+                            Atul Singh
+                            <span className="text-base font-normal ml-3" style={{ color: '#6B7280' }}>| Software Engineer</span>
+                        </h3>
+
+                        <p className="text-lg md:text-xl leading-relaxed mb-5 font-light relative z-10" style={{ color: '#9CA3AF' }}>
+                            I am a dedicated full-stack developer specializing in creating high-performance, robust, and
+                            user-centric digital experiences. Bridging the gap between design and intricate engineering,
+                            I strive to build scalable applications that drive meaningful business outcomes.
+                        </p>
+
+                        <p className="leading-relaxed text-base font-light relative z-10" style={{ color: '#6B7280' }}>
+                            Strong foundations in{' '}
+                            <span className="font-mono px-2 py-0.5 rounded text-sm" style={{ color: '#7C5CFC', background: 'rgba(124,92,252,0.1)' }}>MERN</span>,{' '}
+                            competitive programming, and modern machine learning concepts.
+                        </p>
+
+                        {/* What I Do row */}
+                        <div className="flex flex-wrap items-center justify-center gap-3 mt-6 relative z-10">
+                            {whatIDo.map(({ icon: Icon, text, color }) => (
+                                <motion.div
+                                    key={text}
+                                    whileHover={{ scale: 1.05, y: -2 }}
+                                    className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium"
+                                    style={{ background: `${color}12`, border: `1px solid ${color}30`, color }}
+                                >
+                                    <Icon size={14} />
+                                    {text}
+                                </motion.div>
+                            ))}
                         </div>
-                        <span className="text-gray-500 ml-2">philosophy.js</span>
-                    </div>
-                    <div className="space-y-1 text-sm">
-                        <div><span className="text-purple-400">const</span> <span className="text-blue-400">passion</span> = <span className="text-green-400">"Building innovative solutions"</span>;</div>
-                        <div><span className="text-purple-400">const</span> <span className="text-blue-400">goal</span> = <span className="text-green-400">"Impact through technology"</span>;</div>
-                        <div><span className="text-purple-400">const</span> <span className="text-blue-400">approach</span> = <span className="text-green-400">"Learn, Build, Share"</span>;</div>
-                        <div className="pt-2"><span className="text-gray-500">// Always ready for new challenges</span></div>
                     </div>
                 </motion.div>
+
+                {/* 3 Highlight Cards */}
+                <div className="grid md:grid-cols-3 gap-7">
+                    {highlights.map((item, index) => {
+                        const Icon = item.icon;
+                        return (
+                            <motion.div
+                                key={item.title}
+                                initial={{ opacity: 0, y: 40 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: index * 0.15, duration: 0.5 }}
+                                whileHover={{ y: -12, scale: 1.02 }}
+                                className="group relative h-full"
+                            >
+                                <div
+                                    className="p-7 rounded-3xl h-full flex flex-col items-start transition-all duration-400"
+                                    style={{
+                                        background: '#111827',
+                                        border: `1px solid ${item.border}`,
+                                        boxShadow: `0 0 0 rgba(0,0,0,0)`,
+                                    }}
+                                    onMouseEnter={e => {
+                                        e.currentTarget.style.boxShadow = `0 0 40px ${item.glow}, 0 20px 60px rgba(0,0,0,0.4)`;
+                                        e.currentTarget.style.border = `1px solid ${item.border.replace('0.25', '0.5')}`;
+                                    }}
+                                    onMouseLeave={e => {
+                                        e.currentTarget.style.boxShadow = `0 0 0 rgba(0,0,0,0)`;
+                                        e.currentTarget.style.border = `1px solid ${item.border}`;
+                                    }}
+                                >
+                                    {/* Icon */}
+                                    <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${item.gradient} flex items-center justify-center mb-5 shadow-lg`}>
+                                        <Icon className="text-white" size={26} />
+                                    </div>
+
+                                    <h4 className="text-xl font-bold mb-3 transition-all duration-300" style={{ color: '#E5E7EB' }}>
+                                        {item.title}
+                                    </h4>
+                                    <p className="text-sm leading-relaxed font-light flex-1" style={{ color: '#9CA3AF' }}>
+                                        {item.description}
+                                    </p>
+                                </div>
+                            </motion.div>
+                        );
+                    })}
+                </div>
             </div>
         </section>
     );
