@@ -2,7 +2,7 @@ import React from 'react';
 import { Canvas } from '@react-three/fiber';
 import { PerspectiveCamera } from '@react-three/drei';
 import { motion } from 'framer-motion';
-import { ChevronDown, ArrowRight, Download, Sparkles, Code2, Zap, Brain } from 'lucide-react';
+import { ChevronDown, ArrowRight, ExternalLink, Sparkles, Code2, Zap, Brain } from 'lucide-react';
 import { TypeAnimation } from 'react-type-animation';
 import Scene3D from '../components/Scene3D';
 import profileImg from '../assets/profile.jpeg';
@@ -117,8 +117,8 @@ const Hero = () => {
                             className="btn-ghost px-8 py-4 rounded-2xl font-bold flex items-center justify-center gap-2 group"
                             style={{ color: '#E5E7EB' }}
                         >
-                            <Download size={18} className="transition-transform group-hover:-translate-y-0.5" />
-                            Download Resume
+                            <ExternalLink size={18} className="transition-transform group-hover:-translate-y-0.5" />
+                            View Resume
                         </motion.a>
                     </motion.div>
 

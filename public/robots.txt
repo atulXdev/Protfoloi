@@ -1,0 +1,9 @@
+# robots.txt for https://atul-kumar-singh.vercel.app
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://atul-kumar-singh.vercel.app/sitemap.xml
+
+# Crawl-delay (optional, respected by some bots)
+Crawl-delay: 1
