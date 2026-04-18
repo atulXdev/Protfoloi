@@ -7,11 +7,11 @@ import leadBeastImg from '../assets/projects/LeadBeast.png';
 
 const Projects = () => {
 
-    const [activeFilter, setActiveFilter] = useState('industry');
+    const [activeFilter, setActiveFilter] = useState('clone');
 
     const filters = [
-        { key: 'industry', label: 'Industry Level', icon: Briefcase, color: '#7C5CFC' },
         { key: 'clone', label: 'Clone Projects', icon: Layers, color: '#00D4FF' },
+        { key: 'industry', label: 'Industry Level', icon: Briefcase, color: '#7C5CFC' },
         { key: 'figma', label: 'Figma Designs', icon: Figma, color: '#A259FF' },
     ];
 
