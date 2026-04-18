@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Github, Linkedin, Twitter, Code2, MapPin, Send, CheckCircle2, AlertCircle } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
+    const formRef = useRef();
     const [formData, setFormData] = useState({ name: '', email: '', message: '' });
     const [status, setStatus] = useState({ type: '', message: '' });
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -19,14 +21,21 @@ const Contact = () => {
         setIsSubmitting(true);
         setStatus({ type: 'info', message: 'Sending message...' });
 
-        // TODO: Implement EmailJS here
-        console.log('EmailJS will be implemented here', formData);
-
-        setTimeout(() => {
+        try {
+            await emailjs.sendForm(
+                'service_486cuxm',
+                'template_gihh1mu',
+                formRef.current,
+                '_EA4mOkg8iJvk1I3y'
+            );
             setStatus({ type: 'success', message: "Message sent! I'll get back to you soon 🚀" });
             setFormData({ name: '', email: '', message: '' });
+        } catch (error) {
+            console.error('EmailJS error:', error);
+            setStatus({ type: 'error', message: 'Failed to send message. Please try again later.' });
+        } finally {
             setIsSubmitting(false);
-        }, 1500);
+        }
     };
 
     return (
@@ -147,6 +156,7 @@ const Contact = () => {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
+                        ref={formRef}
                         onSubmit={handleSubmit}
                         className="space-y-5"
                     >
@@ -154,6 +164,7 @@ const Contact = () => {
                             <label className="block text-xs uppercase tracking-widest mb-2" style={{ color: '#6B7280' }}>Your Name</label>
                             <input
                                 type="text"
+                                name="from_name"
                                 placeholder="e.g. John Doe"
                                 value={formData.name}
                                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -166,6 +177,7 @@ const Contact = () => {
                             <label className="block text-xs uppercase tracking-widest mb-2" style={{ color: '#6B7280' }}>Email Address</label>
                             <input
                                 type="email"
+                                name="from_email"
                                 placeholder="you@example.com"
                                 value={formData.email}
                                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -177,6 +189,7 @@ const Contact = () => {
                         <div>
                             <label className="block text-xs uppercase tracking-widest mb-2" style={{ color: '#6B7280' }}>Message</label>
                             <textarea
+                                name="message"
                                 placeholder="Tell me about your project or opportunity..."
                                 value={formData.message}
                                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
